@@ -18,4 +18,14 @@ class Publicacion(models.Model):
     
     def __str__(self):
         return self.titulo
+   
+class Mensaje(models.Model):
+    
+    codigo = models.AutoField(primary_key=True)
+    usuario = models.TextField()
+    destinatario = models.ForeignKey(User)
+    cuerpo = models.TextField(blank=False, default='')
+    
+    def __str__(self):
+        return self.cuerpo
         
