@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-from unipath import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +24,6 @@ SECRET_KEY = 'bol^euu3^4jp=-!1ig^@x_gqwe)^yp1s3q9n)_w3^!cnej74_@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-RUTA_PROYECTO = Path(__file__).ancestor(2)
 
 ALLOWED_HOSTS = []
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -34,7 +32,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 
 INSTALLED_APPS = [
-    'blog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,7 +120,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
-MEDIA_URL = '/media/'
-STATICFILES_DIRS =( RUTA_PROYECTO.child('static'),)
-
