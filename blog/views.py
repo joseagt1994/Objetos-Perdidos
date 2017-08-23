@@ -22,3 +22,8 @@ def agregarImagenes(request,cod_publicacion):
     print('Imagenes...')
     print(imagenes)
     return render_to_response('imagenes.html',{'formulario':formulario,'imagenes':imagenes},context_instance=RequestContext(request))
+
+def verPublicacion(request):
+    imagenes = Imagen.objects.raw('SELECT * FROM blog_imagen GROUP BY publicacion_id')
+    return render_to_response('visualizar.html',{'imagenes':imagenes},context_instance=RequestContext(request))
+    #return render(request, 'visualizar.html', {'publicaciones':publicaciones})
