@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from objetos_perdidos import settings
+from blog.views import publicar, agregarImagenes,verPublicacion,enviarMensaje,publicarEncontrado
 
 urlpatterns = [
+    url(r'^$', publicar, name="publicar"),
+    url(r'^agregarImagenes/(?P<cod_publicacion>\d+)$', agregarImagenes, name="agregarImagenes"),
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^visualizar$',verPublicacion),
+    url(r'^reclamar/(?P<cod_publicacion>\d+)$',enviarMensaje),
+    url(r'^encontrado$',publicarEncontrado)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,7 +14,7 @@ class formComentario(forms.ModelForm):
 class formImagen(forms.ModelForm):
     class Meta:
         model = Imagen
-        fields = ['ruta','link']
+        fields = ['descripcion','link']
         
 class formMensaje(forms.ModelForm):
     class Meta:

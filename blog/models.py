@@ -18,7 +18,7 @@ class Publicacion(models.Model):
     
     def __str__(self):
         return self.titulo
-   
+      
 class Mensaje(models.Model):
     
     codigo = models.AutoField(primary_key=True)
@@ -28,4 +28,13 @@ class Mensaje(models.Model):
     
     def __str__(self):
         return self.cuerpo
-        
+      
+class Imagen(models.Model):
+    
+    codigo = models.AutoField(primary_key=True)
+    link = models.ImageField(upload_to='imagenes')
+    descripcion = models.TextField()
+    publicacion = models.ForeignKey(Publicacion)
+    
+    def __str__(self):
+        return self.link
