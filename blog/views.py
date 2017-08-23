@@ -39,3 +39,12 @@ def publicar(request):
     formImagenes = formImagen()
     return render_to_response('publicar.html',{'formulario':formulario,'formImg':formImagenes}, context_instance= RequestContext(request))
     
+def verPublicacion(request):
+    imagenes = Imagen.objects.all()
+    return render_to_response('visualizar.html',{'imagenes':imagenes},context_instance=RequestContext(request))
+    
+
+def enviarMensaje(request,cod_publicacion):
+    pub = Publicacion.objects.get(codigo=cod_publicacion)
+    autor = pub.autor
+    return render_to_response('reclamar.html',{'autor':autor},context_instance=RequestContext(request))
