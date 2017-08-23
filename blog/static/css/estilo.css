@@ -1,0 +1,92 @@
+html{
+	width: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(25, 25, 112, 0.7);
+    width: 100%;
+}
+.div-central {
+    margin-top: 20%;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 25px;
+    background-color: rgba(25, 25, 112, 0.7);
+    color: white;
+}
+.form1 {
+    margin: auto;
+    padding: 10px;
+}
+.submit-bt {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(25, 25, 112);
+    padding: 3%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 2px solid rgb(0, 0, 0);
+    cursor: pointer;
+}
+.texto{
+	width: 100%;
+	padding: 5px;
+	border-radius: 3px;
+	font-size: 14px;
+}
+label{
+	font-size: 18px;
+}
+.imagen-cl{
+	display: inline-block;
+	margin: 10px;
+	border-radius: 3px;
+	border: 3px solid rgb(255, 255, 255);
+}
+#imagenes-div{
+	width: 100%;
+}
+#imagen-pantalla{
+	position: absolute;
+	z-index: 2;
+	border-radius: 3px;
+	border: 3px solid rgb(255, 255, 255);
+}
+img{
+	height: auto;
+	width: 128px;
+}
+#fondo{
+	background-color: rgba(0,0,0,0.9);
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	display: none;
+	top: 0;
+	left: 0;
+}
+@media only screen and (min-width: 412px) {	
+    .div-central {
+        width: 50%;
+        margin-top: 15%;
+    }
+
+    img{
+		height: auto;
+		width: 196px;
+	}
+}
+@media only screen and (min-width: 824px) {
+    .div-central {
+        width: 30%;
+        margin-top: 5%;
+    }
+}

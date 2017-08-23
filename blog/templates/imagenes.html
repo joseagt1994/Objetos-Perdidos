@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="utf-8"> 
+<link rel="stylesheet" type="text/css" href="/static/css/estilo.css">
+<script type="text/javascript" src="/static/jquery-1.12.2.min.js"></script>
+<head>
+<title>Imágenes</title>
+</head>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#imagen-pantalla").hide();
+        $("#imagen-full").outerWidth(true);
+         $('.imagen-cl img').click(function () {
+            //alert($(this).attr('src'));
+            $("#imagen-full").attr('src', $(this).attr('src'));
+            var docWidth = $(window).width();
+            var docHeight = $(document).height();
+            if(docWidth <= 412){
+                $("#imagen-full").outerWidth(docWidth);                
+                $("#imagen-pantalla").css("left", 0);                
+            }
+            else{
+                $("#imagen-full").outerWidth(docWidth/2);
+                $("#imagen-pantalla").css("left", (docWidth - $("#imagen-pantalla").width())/2);
+            }        
+            $("#imagen-pantalla").css("top", 0);    
+            window.scrollTo(0, 0);
+            $("#fondo").css("height", docHeight);
+            $("#fondo").show();
+            $("#imagen-pantalla").show();
+        });
+        $("#imagen-pantalla").click(function(){
+            $("#fondo").hide();
+            $("#imagen-pantalla").hide(); 
+        });
+        $("#fondo").click(function(){
+            $("#fondo").hide();
+            $("#imagen-pantalla").hide(); 
+        });
+    });
+</script>
+<body>
+    <h1>Agregar Imagenes</h1>
+    <div>
+    <!-- Formulario para agregar imagen -->
+        <form method="POST" class="form1" id="form-1" enctype="multipart/form-data">
+            {%csrf_token %}
+            <br><br>
+            <label>Selecciona tu imagen</label><br>
+            <label>Ruta: </label><input type="text" name="ruta" id="ruta">
+            <input type="file" name="link" id="link" class="read-more right" required /><br/><br>
+            <input style="padding: 1%;" type="submit" class="read-more right submit-bt" name="agregar" value="Agregar imagen" />
+            <br><br>
+            {{formulario.as_table}}
+        </form>
+    </div>
+    <div id="imagenes-div">
+    {% if imagenes %}
+        {% for i in imagenes %}
+            <div class="imagen-cl">
+                <img src="/media/{{i.link}}"></img>           
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+    <div id="imagen-pantalla">
+        <img id="imagen-full" src=""></img>
+    </div>    
+    <div id="fondo">
+    </div>
+    </body>
+</html>
