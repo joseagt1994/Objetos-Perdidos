@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"> 
+<link rel="stylesheet" type="text/css" href="/static/css/estilo.css">
+<head>
+	<title>Perfil</title></title>
+</head>
+<body>
+	<div class="div-central">
+	    {% for m in mensajes %}
+	        <a href="/conversacion/{{m.codigo}}">
+	            <div>
+	                <h2>{{m.remitente}}</h2>
+	                <h3>{{m.cuerpo}}</h3>
+	            </div>
+	        </a>
+	        
+	    {% endfor %}
+		<form method="POST" class="form1" id="form-1">
+			{%csrf_token %}
+			
+			<input type="submit" name="cerrar_sesion"/>
+			
+	
+			
+		</form>
+	</div>
+</body>
+</html>
