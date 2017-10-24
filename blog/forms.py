@@ -20,3 +20,5 @@ class formMensaje(forms.ModelForm):
     class Meta:
         model = Mensaje
         fields = ['cuerpo']
+
+        
