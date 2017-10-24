@@ -30,4 +30,6 @@ urlpatterns = [
     url(r'^encontrado$',publicarEncontrado),
     url(r'^perfil/(?P<cod_user>\d+)$',perfil),
     url(r'^conversacion/(?P<cod_mensaje>\d+)$',conversacion),
+    url(r'^logout$',logout),
+    url(r'^registrarse$',registro),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
