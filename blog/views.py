@@ -204,7 +204,14 @@ def vistaLogin(request):
             return HttpResponseRedirect('perfil/'+str(existe.codigo))
 
     return render_to_response("login.html",context_instance= RequestContext(request))
-   
+
+def logout(request):
+    try:
+        request.session['login'] =None
+    except:
+        HttpResponseRedirect('/')
+    return render_to_response("login.html",context_instance= RequestContext(request))    
+
 def registro(request):
     if request.method == 'POST':
         usuario = request.POST['txtUsuario']
