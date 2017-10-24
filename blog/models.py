@@ -21,10 +21,19 @@ class Publicacion(models.Model):
 
 class Mensaje(models.Model):
     
-    codigo = models.AutoField(primary_key=True)
-    usuario = models.TextField()
-    destinatario = models.ForeignKey(User)
     cuerpo = models.TextField(blank=False, default='')
+    remitente = models.ForeignKey(Usuario,related_name='remitente',default='',unique=True)
+    destinatario = models.ForeignKey(Usuario,related_name='destinatario',default='',unique=True)
+    
+    def __str__(self):
+        return self.cuerpo
+        
+class DetalleMensaje(models.Model):
+    
+    cuerpo = models.TextField(blank=False, default='')
+    usuario = models.ForeignKey(Usuario,default='',unique=True)
+    fecha = models.DateTimeField(auto_now=True)
+    mensaje = models.ForeignKey(Mensaje)
     
     def __str__(self):
         return self.cuerpo
@@ -38,3 +47,14 @@ class Imagen(models.Model):
     
     def __str__(self):
         return self.link
+    
+class Comentario(models.Model):
+    
+    codigo = models.AutoField(primary_key=True)
+    publicacion = models.ForeignKey(Publicacion)
+    fecha = models.DateField()
+    cuerpo = models.TextField(blank=True, default='')
+    autor = models.ForeignKey(Usuario)
+    
+    def __str__(self):
+        return self.cuerpo
