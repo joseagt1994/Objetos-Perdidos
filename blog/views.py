@@ -267,6 +267,21 @@ def conversacion(request,cod_mensaje):
     
     return render_to_response("conversacion.html",{'mensaje':msj,'chats':chats},context_instance= RequestContext(request))
 
+def registro(request):
+    if request.method == 'POST':
+        usuario = request.POST['txtUsuario']
+        contra = request.POST['txtPass']
+        
+        try:
+            existe = Usuario.objects.get(nombre=usuario)
+        except Usuario.DoesNotExist:
+            existe = None
+            Usuario.objects.create(nombre=usuario,password=contra)
+            existe = Usuario.objects.get(nombre=usuario)
+            return HttpResponseRedirect('/')
+    
+    return render_to_response("registro.html",context_instance= RequestContext(request))
+
 def getUsuario(codigo_user):
     usuario = Usuario.objects.get(codigo=codigo_user)
     return usuario
