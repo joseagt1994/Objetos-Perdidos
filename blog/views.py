@@ -39,6 +39,18 @@ def publicar(request):
     formImagenes = formImagen()
     return render_to_response('publicar.html',{'formulario':formulario,'formImg':formImagenes}, context_instance= RequestContext(request))
 
+def publicacion_detallada(request,cod_publicacion):
+     #agregacion de la validacion del login
+    log = request.session['login'] 
+    if log ==None:
+        return render(request,"login.html")
+    usuario = Usuario.objects.get(codigo = 1)
+    print(usuario.codigo)
+    publicacion = Publicacion.objects.get(codigo = cod_publicacion)
+    imagenes = Imagen.objects.raw('SELECT * FROM objetos_imagen WHERE publicacion_id = %s',[cod_publicacion])
+    print(imagenes)
+    return render_to_response('publicacion.html',{'pub':publicacion,'imgs':imagenes},context_instance=RequestContext(request))
+
 def enviarMensaje(request,cod_publicacion):
     pub = Publicacion.objects.get(codigo=cod_publicacion)
     autor = pub.autor
@@ -64,6 +76,16 @@ def agregarImagenes(request,cod_publicacion):
     print('Imagenes...')
     print(imagenes)
     return render_to_response('imagenes.html',{'formulario':formulario,'imagenes':imagenes},context_instance=RequestContext(request))
+
+def reclamar(cod_publicacion):
+    publicacion = Publicacion.objects.get(codigo=cod_publicacion)
+    if(publicacion != None):
+        publicacion.estado = True
+        publicacion.save()
+        return True
+    else:
+        print('Publicacion no existe!')
+        return False
 
 def verPublicacion(request):
     imagenes = Imagen.objects.raw('SELECT * FROM blog_imagen GROUP BY publicacion_id')
