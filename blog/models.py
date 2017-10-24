@@ -47,3 +47,14 @@ class Imagen(models.Model):
     
     def __str__(self):
         return self.link
+    
+class Comentario(models.Model):
+    
+    codigo = models.AutoField(primary_key=True)
+    publicacion = models.ForeignKey(Publicacion)
+    fecha = models.DateField()
+    cuerpo = models.TextField(blank=True, default='')
+    autor = models.ForeignKey(Usuario)
+    
+    def __str__(self):
+        return self.cuerpo
