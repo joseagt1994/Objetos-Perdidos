@@ -20,3 +20,8 @@ class formMensaje(forms.ModelForm):
     class Meta:
         model = Mensaje
         fields = ['cuerpo']
+
+class formChat(forms.ModelForm):
+    class Meta:
+        model = DetalleMensaje
+        fields = []
