@@ -80,3 +80,15 @@ def verPublicacion(request):
     return render_to_response('visualizar.html',{'imagenes':imagenes},context_instance=RequestContext(request))
     #return render(request, 'visualizar.html', {'publicaciones':publicaciones})
 
+def getUsuario_codigo(cod_usuario):
+    usuario = Usuario.objects.filter(codigo=cod_usuario).first()
+    if usuario != None:
+        return True
+    else:
+        return False
+        
+def getPublicaciones():
+    publicaciones = Publicacion.objects.raw('SELECT * FROM objetos_imagen GROUP BY publicacion_id')
+    print(len(list(publicaciones)))
+    print('Tager se quedo sin bateria jajaja')
+    return 1
