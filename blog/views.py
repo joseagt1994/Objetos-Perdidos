@@ -40,9 +40,25 @@ def publicar(request):
     return render_to_response('publicar.html',{'formulario':formulario,'formImg':formImagenes}, context_instance= RequestContext(request))
 
 def enviarMensaje(request,cod_publicacion):
+    #agregacion de la validacion del login
+    log = request.session['login'] 
+    if log ==None:
+         return render(request,"login.html")
+    usuario = Usuario.objects.get(codigo=2)
     pub = Publicacion.objects.get(codigo=cod_publicacion)
     autor = pub.autor
+    if request.method == 'POST':
+        mensaje = Mensaje()
+        mensaje.cuerpo = request.POST['descripcion']
+        mensaje.remitente = usuario
+        mensaje.destinatario = autor
+        mensaje.save()
+        return HttpResponseRedirect('/visualizar')
     return render_to_response('reclamar.html',{'autor':autor},context_instance=RequestContext(request))
+
+def cantidad_bandejaEntrada(cod_usuario):
+    mensajes = Mensaje.objects.raw('SELECT * FROM objetos_mensaje WHERE destinatario_id = %s',[cod_usuario])
+    return mensajes
 
 def agregarImagenes(request,cod_publicacion):
     pub = Publicacion.objects.get(codigo=cod_publicacion)
