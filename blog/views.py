@@ -132,3 +132,19 @@ def getPublicaciones():
     print(len(list(publicaciones)))
     print('Tager se quedo sin bateria jajaja')
     return 1
+
+def conversacion(request,cod_mensaje):
+    msj = Mensaje.objects.get(codigo = cod_mensaje)
+    chats = DetalleMensaje.objects.get(mensaje = msj)
+    
+    if request.method == 'POST':
+        formulario = formChat(request.POST)
+        if formulario.is_valid():
+            detalle = formulario.save(commit=False)
+            user = Usuario.objects.get(nombre = request.session['login'])
+            detalle.usuario = user
+            detalle.mensaje = msj
+            detalle.save()
+            chats = DetalleMensaje.objects.get(mensaje = msj)
+    
+    return render_to_response("conversacion.html",{'mensaje':msj,'chats':chats},context_instance= RequestContext(request))
