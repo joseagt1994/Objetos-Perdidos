@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"> 
+<link rel="stylesheet" type="text/css" href="/static/css/estilo.css">
+<head>
+	<title>Publicacion # {{pub.codigo}}</title>
+</head>
+<body>
+	{% if pub %}
+	<div class="div-central">
+		<form method="POST" class="form1" id="form-1">
+			<h2 align="center">{{pub.titulo}}</h2>
+			<div class="detalles-div">
+				<h3>Descripción</h3>
+				<p class="texto">{{pub.descripcion}}</p>
+			</div>
+			<div class="detalles-div">
+				<h3>Ubicación donde se encontró</h3>
+				<p class="texto">{{pub.ubicacion}}</p>
+			</div>
+			<a href="/reclamar/{{pub.codigo}}" class="read-more right submit-bt">Reclamar</a>
+		</form>
+	</div>
+	{% endif %}
+	<div>
+            <h1>Imagenes...</h1>
+            {% if imgs %}
+            {% for i in imgs %}
+            <img class="imagen-cl" src="/media/{{i.link}}"></img>
+            <p>{{i.descripcion}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+</body>
+</html>
