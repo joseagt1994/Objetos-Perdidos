@@ -18,7 +18,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls.static import static
 from objetos_lose import settings
-from objetos.views import publicar,agregarImagenes,verPublicacion,enviarMensaje,publicarEncontrado,publicacion_detallada
+from objetos.views import publicar,agregarImagenes,verPublicacion,enviarMensaje,publicarEncontrado,publicacion_detallada,vistaLogin
+from objetos.views import perfil,conversacion,logout,registro
 
 urlpatterns = [
     url(r'^$', vistaLogin, name="login"),
