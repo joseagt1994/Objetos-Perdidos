@@ -9,22 +9,6 @@
 </head>
 <body>
 	<div class="div-central">
-	    <h2>Publicacion de Objeto Encontrado</h2>
-	    
-		<form method="POST" class="form1" id="form-1">
-			{%csrf_token %}
-			<label>Título</label><br>
-			<input type="text" name="titulo" class="texto">
-			<br><br>
-			<label>Descripción</label><br>
-			<textarea class="texto" name="descripcion" form="form-1" rows="6"></textarea>
-			{{formulario.as_table}}
-			<br><br>
-			<input type="submit" class="read-more right submit-bt" name="publicar" value="Siguiente" />
-		<br>
-		</form>
-	</div>
-	<div class="div-central">
 	    <h3>Instrucciones</h3><br>
 	    <p>En la parte superior encontrada un titulo y una descripcion sobre
 	    la cual debera escribir, por ejemplo Titulo: "Mochila" Descripcion: "Encontre una mochila roja en el salon 209", 
