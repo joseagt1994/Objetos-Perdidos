@@ -18,7 +18,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls.static import static
 from objetos_lose import settings
-from objetos.views import publicar,agregarImagenes,verPublicacion,enviarMensaje,publicarEncontrado,publicacion_detallada
+from objetos.views import publicar,agregarImagenes,verPublicacion,enviarMensaje,publicarEncontrado,publicacion_detallada,vistaLogin
+from objetos.views import perfil,conversacion,logout,registro
 
 urlpatterns = [
     url(r'^$', vistaLogin, name="login"),
@@ -28,4 +29,8 @@ urlpatterns = [
     url(r'^visualizar$',verPublicacion),
     url(r'^reclamar/(?P<cod_publicacion>\d+)$',enviarMensaje),
     url(r'^encontrado$',publicarEncontrado),
+    url(r'^perfil/(?P<cod_user>\d+)$',perfil),
+    url(r'^conversacion/(?P<cod_mensaje>\d+)$',conversacion),
+    url(r'^logout$',logout),
+    url(r'^registrarse$',registro),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

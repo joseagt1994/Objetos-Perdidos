@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"> 
+<link rel="stylesheet" type="text/css" href="/static/css/estilo.css">
+<head>
+	<title>Login</title></title>
+</head>
+<body>
+	<div class="div-central">
+		<form method="POST" class="form1" id="form-1">
+			{%csrf_token %}
+			<h2>Registro de Usuario</h2>
+			<label>Usuario</label><br>
+			<input type="text" name="txtUsuario" class="texto"><br>
+			<label>Contraseña</label><br>
+			<input type="password" name="txtPass" class="texto"><br>
+			<br>
+			<input type="submit"  name="publicar" value="REGISTARSE" />
+			<br><br>
+		</form>
+	</div>
+</body>
+</html>
