@@ -21,4 +21,7 @@ class formMensaje(forms.ModelForm):
         model = Mensaje
         fields = ['cuerpo']
 
-        
+class formChat(forms.ModelForm):
+    class Meta:
+        model = DetalleMensaje
+        fields = []
