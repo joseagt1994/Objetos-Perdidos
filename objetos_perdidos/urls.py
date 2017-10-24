@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^visualizar$',verPublicacion),
     url(r'^reclamar/(?P<cod_publicacion>\d+)$',enviarMensaje),
-    url(r'^encontrado$',publicarEncontrado)
+    url(r'^encontrado$',publicarEncontrado),
+    url(r'^perfil/(?P<cod_user>\d+)$',perfil),
+    url(r'^conversacion/(?P<cod_mensaje>\d+)$',conversacion),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
