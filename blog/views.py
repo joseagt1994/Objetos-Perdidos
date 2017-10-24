@@ -69,4 +69,16 @@ def verPublicacion(request):
     imagenes = Imagen.objects.raw('SELECT * FROM blog_imagen GROUP BY publicacion_id')
     return render_to_response('visualizar.html',{'imagenes':imagenes},context_instance=RequestContext(request))
     #return render(request, 'visualizar.html', {'publicaciones':publicaciones})
+    
+def perfil(request,cod_user):
+     #agregacion de la validacion del login
+    log = request.session['login'] 
+    if log ==None:
+        return render(request,"login.html")
+    usuario = getUsuario(cod_user)
+    mensajes = cantidad_bandejaEntrada(cod_user)
+   # publicaciones = Publicacion.objects.get(autor=usuario)
+    
+    
+    return render_to_response("perfil.html",{'mensajes':mensajes},context_instance= RequestContext(request))
 
