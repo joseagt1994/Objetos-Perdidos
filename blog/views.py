@@ -82,3 +82,16 @@ def perfil(request,cod_user):
     
     return render_to_response("perfil.html",{'mensajes':mensajes},context_instance= RequestContext(request))
 
+def vistaLogin(request):
+    request.session['login'] = None   
+    if request.method =='POST':
+        usuario = request.POST['txtUsuario']
+        contra = request.POST['txtPass']
+        existe = Usuario.objects.get(password = contra,nombre=usuario)
+       
+        if(existe !=None):
+            request.session['login'] = usuario
+            print request.session['login']
+            return HttpResponseRedirect('perfil/'+str(existe.codigo))
+
+    return render_to_response("login.html",context_instance= RequestContext(request))
