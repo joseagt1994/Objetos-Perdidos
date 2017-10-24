@@ -23,6 +23,16 @@ def agregarImagenes(request,cod_publicacion):
     print(imagenes)
     return render_to_response('imagenes.html',{'formulario':formulario,'imagenes':imagenes},context_instance=RequestContext(request))
 
+def reclamar(cod_publicacion):
+    publicacion = Publicacion.objects.get(codigo=cod_publicacion)
+    if(publicacion != None):
+        publicacion.estado = True
+        publicacion.save()
+        return True
+    else:
+        print('Publicacion no existe!')
+        return False
+
 def verPublicacion(request):
     imagenes = Imagen.objects.raw('SELECT * FROM blog_imagen GROUP BY publicacion_id')
     return render_to_response('visualizar.html',{'imagenes':imagenes},context_instance=RequestContext(request))
